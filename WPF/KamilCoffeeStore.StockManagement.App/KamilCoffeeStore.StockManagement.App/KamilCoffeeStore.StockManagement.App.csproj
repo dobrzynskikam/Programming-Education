@@ -79,6 +79,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converters\ImageConverter.cs" />
+    <Compile Include="Converters\PriceConverter.cs" />
+    <Compile Include="Extensions\ListExtension.cs" />
     <Compile Include="Services\CoffeeDataService.cs" />
     <Compile Include="Services\IDataService.cs" />
     <Compile Include="View\CoffeeDetailView.xaml.cs">

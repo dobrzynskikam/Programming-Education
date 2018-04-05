@@ -1,8 +1,10 @@
 ﻿using KamilCofeeStore.StockManagement.Model;
+using KamilCoffeeStore.StockManagement.App.Extensions;
 using KamilCoffeeStore.StockManagement.App.Services;
 using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -25,6 +27,7 @@ namespace KamilCoffeeStore.StockManagement.App.View
     public partial class CoffeeOverviewView
     {
         private Coffee selectedCoffee;
+        private ObservableCollection<Coffee> Coffees;
         public CoffeeOverviewView()
         {
             InitializeComponent();
@@ -35,7 +38,8 @@ namespace KamilCoffeeStore.StockManagement.App.View
         private void LoadData()
         {
             IDataService coffeeDataService = new CoffeeDataService();
-            CoffeeListView.ItemsSource = coffeeDataService.GetAllCoffees();
+            Coffees = coffeeDataService.GetAllCoffees().ToObservableCollection();
+            CoffeeListView.ItemsSource = Coffees;
         }
 
         private void CoffeeListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -66,6 +70,24 @@ namespace KamilCoffeeStore.StockManagement.App.View
             CoffeeDetailView coffeDetailView = new CoffeeDetailView();
             coffeDetailView.SelectedCoffee = selectedCoffee;
             coffeDetailView.ShowDialog();
+        }
+
+        private void AddFakeCoffee_Click(object sender, RoutedEventArgs e)
+        {
+            Coffee cof = new Coffee()
+            {
+                CoffeeId = 123,
+                CoffeeName = "Test coffee",
+                Description = "Siply test",
+                ImageId = 1,
+                AmountInStock = 100,
+                InStock = true,
+                FirstAddedToStockDate = new DateTime(2019, 1, 3),
+                OriginCountry = Country.Ethiopia,
+                Price = 20
+            };
+
+            Coffees.Add(cof);
         }
     }
 }

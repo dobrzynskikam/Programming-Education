@@ -34,16 +34,22 @@ namespace KamilCoffeeStore.StockManagement.App.View
             this.DataContext = SelectedCoffee;
         }
 
-        private void LoadData()
+        private void SaveCoffeeButton_Click(object sender, RoutedEventArgs e)
         {
-            CoffeeNameLabel.Content = SelectedCoffee.CoffeeName;
-
-
-            BitmapImage img = new BitmapImage();
-            img.BeginInit();
-            img.UriSource = new Uri("/KamilCoffeeStore.StockManagement.App;component/Images/coffee" + SelectedCoffee.CoffeeId + ".jpg", UriKind.Relative);
-            img.EndInit();
-            CoffeeImage.Source = img;
+            SelectedCoffee.CoffeeName = "SOmething Expensive";
+            SelectedCoffee.Price = 1000;
         }
+
+        //private void LoadData()
+        //{
+        //    CoffeeNameLabel.Content = SelectedCoffee.CoffeeName;
+
+
+        //    BitmapImage img = new BitmapImage();
+        //    img.BeginInit();
+        //    img.UriSource = new Uri("/KamilCoffeeStore.StockManagement.App;component/Images/coffee" + SelectedCoffee.CoffeeId + ".jpg", UriKind.Relative);
+        //    img.EndInit();
+        //    CoffeeImage.Source = img;
+        //}
     }
 }
